@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36301.6 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFModelClient", "WPFModelClient\WPFModelClient.csproj", "{531E3D79-44FE-4A21-B934-5FF9712471F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleModelServer", "ConsoleModelServer\ConsoleModelServer.csproj", "{410AE4C8-F429-4BBB-9BE0-D743E90B1A9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{531E3D79-44FE-4A21-B934-5FF9712471F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{531E3D79-44FE-4A21-B934-5FF9712471F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{531E3D79-44FE-4A21-B934-5FF9712471F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410AE4C8-F429-4BBB-9BE0-D743E90B1A9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410AE4C8-F429-4BBB-9BE0-D743E90B1A9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410AE4C8-F429-4BBB-9BE0-D743E90B1A9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410AE4C8-F429-4BBB-9BE0-D743E90B1A9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
