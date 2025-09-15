@@ -1,0 +1,631 @@
+<Project>
+  <Name>Tim 2</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>CarFactory</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Enum">
+        <Name>PowerSource</Name>
+        <Access>Public</Access>
+        <Location left="307" top="2830" />
+        <Size width="162" height="112" />
+        <Collapsed>False</Collapsed>
+        <Value>AC</Value>
+        <Value>DC</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>BodyType</Name>
+        <Access>Public</Access>
+        <Location left="307" top="2407" />
+        <Size width="162" height="157" />
+        <Collapsed>False</Collapsed>
+        <Value>HATCHBACK</Value>
+        <Value>SEDAN</Value>
+        <Value>SUV</Value>
+        <Value>ESTATE</Value>
+        <Value>ROADSTER</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>EngineConfiguration</Name>
+        <Access>Public</Access>
+        <Location left="307" top="2703" />
+        <Size width="162" height="112" />
+        <Collapsed>False</Collapsed>
+        <Value>INLINE</Value>
+        <Value>VSHAPED</Value>
+        <Value>FLAT</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>FuelType</Name>
+        <Access>Public</Access>
+        <Location left="307" top="2578" />
+        <Size width="162" height="112" />
+        <Collapsed>False</Collapsed>
+        <Value>GASOLINE</Value>
+        <Value>DIESEL</Value>
+        <Value>HYBRID</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>ElectricMotor</Name>
+        <Access>Public</Access>
+        <Location left="1165" top="2727" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private double power</Member>
+        <Member type="Field">private double torque</Member>
+        <Member type="Field">private string cooling</Member>
+        <Member type="Field">private double batteryCapacity</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>EMobility</Name>
+        <Access>Public</Access>
+        <Location left="836" top="2727" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected double voltage</Member>
+        <Member type="Field">protected PowerSource source</Member>
+        <Member type="Method">public abstract void EVMotorSpecs()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Engine</Name>
+        <Access>Public</Access>
+        <Location left="1165" top="2407" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private EngineConfiguration configuration</Member>
+        <Member type="Field">private FuelType fuel</Member>
+        <Member type="Field">private int numberOfCylinders</Member>
+        <Member type="Field">private double power</Member>
+        <Member type="Field">private double torque</Member>
+        <Member type="Constructor">public Engine()</Member>
+        <Member type="Method">public void EngineSpecs()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Model</Name>
+        <Access>Public</Access>
+        <Location left="836" top="2407" />
+        <Size width="162" height="298" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private string modelName</Member>
+        <Member type="Field">private string brandName</Member>
+        <Member type="Field">private BodyType bodyType</Member>
+        <Member type="Field">private int numberOfDoors</Member>
+        <Member type="Field">public List&lt;Engine&gt; ViableEngines</Member>
+        <Member type="Field">int id</Member>
+        <Member type="Field">ConcreteState state</Member>
+        <Member type="Method">public void StartProduction()</Member>
+        <Member type="Constructor">public Model()</Member>
+        <Member type="Method">public void ModelRollOut()</Member>
+        <Member type="Method">public void StopProduction()</Member>
+        <Member type="Method">public void Redesign()</Member>
+        <Member type="Method">public void ProductionFailed()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Comment">
+        <Text>Primarna klasa - Model
++ stanja: Design, InProduction, OutOfProduction
++ metoda ModelRollOut ispisuje sve informacije o modelu i o motorima koji se mogu u njima naci
+
+Izdvojena klasa - ElectricMotor
+
+ostale su pomocne
+
+LiveCharts2 grafikon - Angular Gauge, za svako stanje po jedan
+
+Na prikazu svih modela, omoguciti da se mogu prikazati i modeli koje "pogone" elektro motori</Text>
+        <Location left="487" top="2746" />
+        <Size width="325" height="195" />
+      </Entity>
+      <Entity type="Class">
+        <Name>CarBrand</Name>
+        <Access>Public</Access>
+        <Location left="487" top="2407" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private string name</Member>
+        <Member type="Field">private string country</Member>
+        <Member type="Field">public List&lt;Model&gt; Models</Member>
+        <Member type="Constructor">public CarBrand()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ModelRepository</Name>
+        <Access>Public</Access>
+        <Location left="1865" top="2568" />
+        <Size width="162" height="264" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">List&lt;Model&gt; models</Member>
+        <Member type="Field">IDataPersistance persistance</Member>
+        <Member type="Field">ILogger logger</Member>
+        <Member type="Method">public void AddModel(Model model)</Member>
+        <Member type="Method">public void RemoveModel(int id)</Member>
+        <Member type="Method">public void UpdateModel(Model model)</Member>
+        <Member type="Method">public List&lt;Model&gt; Load(string filePath)</Member>
+        <Member type="Method">public void Save(string filePath, List&lt;Model&gt; models)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IDataPersistance</Name>
+        <Access>Public</Access>
+        <Location left="1865" top="2913" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">List&lt;Model&gt; Load(string filePath)</Member>
+        <Member type="Method">void Save(string filePath, List&lt;Model&gt; models)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>XMLDataPersistance</Name>
+        <Access>Public</Access>
+        <Location left="1619" top="3240" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CSVDataPersistance</Name>
+        <Access>Public</Access>
+        <Location left="1866" top="3240" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>JSONDataPersistance</Name>
+        <Access>Public</Access>
+        <Location left="2110" top="3240" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ElectricMotorAdapter</Name>
+        <Access>Public</Access>
+        <Location left="1481" top="2588" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">ElectricMotor electricMotor</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IStartable</Name>
+        <Access>Public</Access>
+        <Location left="445" top="2013" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void StartProduction(Model model)</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IStopable</Name>
+        <Access>Public</Access>
+        <Location left="695" top="2013" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void StopProduction(Model model)</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IRedesignable</Name>
+        <Access>Public</Access>
+        <Location left="952" top="2013" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void Redesign(Model model)</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IFailable</Name>
+        <Access>Public</Access>
+        <Location left="1213" top="2013" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void ProductionFailed(Model model)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>DesignState</Name>
+        <Access>Public</Access>
+        <Location left="594" top="1539" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>InProductionState</Name>
+        <Access>Public</Access>
+        <Location left="871" top="1618" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>OutOfProductionState</Name>
+        <Access>Public</Access>
+        <Location left="1135" top="1679" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ICommand</Name>
+        <Access>Public</Access>
+        <Location left="2960" top="2600" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void Execute()</Member>
+        <Member type="Method">void Unexecute()</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>AddModelCommand</Name>
+        <Access>Public</Access>
+        <Location left="2561" top="2318" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>RemoveModelCommand</Name>
+        <Access>Public</Access>
+        <Location left="2561" top="2880" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>UpdateModelCommand</Name>
+        <Access>Public</Access>
+        <Location left="2561" top="2600" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Model newModel</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CommandManager</Name>
+        <Access>Public</Access>
+        <Location left="3305" top="2600" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Stack&lt;ICommand&gt; undoStack</Member>
+        <Member type="Field">Stack&lt;ICommand&gt; redoStack</Member>
+        <Member type="Method">public void ExecuteCommand(ICommand command)</Member>
+        <Member type="Method">public void Undo()</Member>
+        <Member type="Method">public void Redo()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IModelService</Name>
+        <Access>Public</Access>
+        <Location left="2599" top="1715" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void AddModel(Model model)</Member>
+        <Member type="Method">void RemoveModel(int id)</Member>
+        <Member type="Method">void UpdateModel(Model model)</Member>
+        <Member type="Method">void Undo()</Member>
+        <Member type="Method">void Redo()</Member>
+        <Member type="Method">void GetAllModels()</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>ModelService</Name>
+        <Access>Public</Access>
+        <Location left="2599" top="1986" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">ModelRepository repository</Member>
+        <Member type="Field">CommandManager commandManager</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ConcreteState</Name>
+        <Access>Public</Access>
+        <Location left="870" top="1152" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ILogger</Name>
+        <Access>Public</Access>
+        <Location left="1287" top="3003" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void Log()</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>TxtLogger</Name>
+        <Access>Public</Access>
+        <Location left="1287" top="3321" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CRUDCommand</Name>
+        <Access>Public</Access>
+        <Location left="2216" top="2610" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected ModelRepository modelRepository</Member>
+        <Member type="Field">protected Model model</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="4" second="5">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1140</X>
+          <Y>2828</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1027</X>
+          <Y>2828</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="7" second="6">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1023</X>
+          <Y>2510</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+        <StartMultiplicity>0..*</StartMultiplicity>
+        <EndMultiplicity>1..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="9" second="7">
+        <Label>manufactures</Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>811</X>
+          <Y>2510</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+        <StartMultiplicity>1</StartMultiplicity>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="10" second="7">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>930</X>
+          <Y>2386</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Dependency" first="10" second="11">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="12" second="11">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="13" second="11">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="14" second="11">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="15" second="6">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="15" second="4">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Realization" first="20" second="16">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="20" second="18">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1001</X>
+          <Y>1988</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="21" second="17">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="21" second="19">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="22" second="18">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1064</X>
+          <Y>1988</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Dependency" first="7" second="16">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="7" second="17">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Dependency" first="7" second="19">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="24" second="23">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2748</X>
+          <Y>2413</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2935</X>
+          <Y>2704</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="25" second="23">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2750</X>
+          <Y>2989</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2929</X>
+          <Y>2704</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="26" second="23">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2752</X>
+          <Y>2704</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2862</X>
+          <Y>2704</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="27" second="23">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Realization" first="29" second="28">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="29" second="10">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2574</X>
+          <Y>2082</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="29" second="27">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2786</X>
+          <Y>2083</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Dependency" first="7" second="18">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="20" second="30">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="21" second="30">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="22" second="30">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="30" second="7">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>432</X>
+          <Y>1257</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>896</X>
+          <Y>2382</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Realization" first="32" second="31">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="10" second="31">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1840</X>
+          <Y>2747</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1612</X>
+          <Y>3093</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Generalization" first="24" second="33">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2516</X>
+          <Y>2415</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2415</X>
+          <Y>2713</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="26" second="33">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="25" second="33">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2520</X>
+          <Y>2976</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2411</X>
+          <Y>2713</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="33" second="10">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="33" second="7">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2306</X>
+          <Y>2563</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>975</X>
+          <Y>2358</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
