@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace>Tim 2.CarFactory</RootNamespace>
+    <AssemblyName>CarFactory</AssemblyName>
+    <ProjectGuid>{}</ProjectGuid>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PowerSource.cs" />
+    <Compile Include="BodyType.cs" />
+    <Compile Include="EngineConfiguration.cs" />
+    <Compile Include="FuelType.cs" />
+    <Compile Include="ElectricMotor.cs" />
+    <Compile Include="EMobility.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="CarBrand.cs" />
+    <Compile Include="ModelRepository.cs" />
+    <Compile Include="IDataPersistance.cs" />
+    <Compile Include="XMLDataPersistance.cs" />
+    <Compile Include="CSVDataPersistance.cs" />
+    <Compile Include="JSONDataPersistance.cs" />
+    <Compile Include="ElectricMotorAdapter.cs" />
+    <Compile Include="IStartable.cs" />
+    <Compile Include="IStopable.cs" />
+    <Compile Include="IRedesignable.cs" />
+    <Compile Include="IFailable.cs" />
+    <Compile Include="DesignState.cs" />
+    <Compile Include="InProductionState.cs" />
+    <Compile Include="OutOfProductionState.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="AddModelCommand.cs" />
+    <Compile Include="RemoveModelCommand.cs" />
+    <Compile Include="UpdateModelCommand.cs" />
+    <Compile Include="CommandManager.cs" />
+    <Compile Include="IModelService.cs" />
+    <Compile Include="ModelService.cs" />
+    <Compile Include="ConcreteState.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="TxtLogger.cs" />
+    <Compile Include="CRUDCommand.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
