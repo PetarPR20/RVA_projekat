@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Common
 {
-	public abstract class ConcreteState
-	{
-	}
+    public abstract class ConcreteState
+    {
+        
+    }
 }

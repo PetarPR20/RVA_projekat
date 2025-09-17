@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common
+namespace Common.Interface
 {
 	public interface IModelService
 	{
