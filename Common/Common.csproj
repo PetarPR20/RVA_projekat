@@ -45,14 +45,21 @@
     <Compile Include="BodyType.cs" />
     <Compile Include="CarBrand.cs" />
     <Compile Include="ConcreteState.cs" />
+    <Compile Include="DesignState.cs" />
     <Compile Include="ElectricMotor.cs" />
     <Compile Include="ElectricMotorAdapter.cs" />
     <Compile Include="EMobility.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineConfiguration.cs" />
     <Compile Include="FuelType.cs" />
-    <Compile Include="IModelService.cs" />
+    <Compile Include="Interface\IModelService.cs" />
+    <Compile Include="InProductionState.cs" />
+    <Compile Include="Interface\IFailable.cs" />
+    <Compile Include="Interface\IRedesignable.cs" />
+    <Compile Include="Interface\IStartable.cs" />
+    <Compile Include="Interface\IStopable.cs" />
     <Compile Include="Model.cs" />
+    <Compile Include="OutOfProductionState.cs" />
     <Compile Include="PowerSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

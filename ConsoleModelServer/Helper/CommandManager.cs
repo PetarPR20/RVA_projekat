@@ -7,22 +7,50 @@ namespace ConsoleModelServer.Helper
 {
 	public class CommandManager
 	{
-		Stack<ICommand> undoStack;
-		Stack<ICommand> redoStack;
+        private Stack<ICommand> undoStack = new Stack<ICommand>();
+        private Stack<ICommand> redoStack = new Stack<ICommand>();
+        //dodato
+        private readonly ILogger logger;
 
-		public void ExecuteCommand(ICommand command)
+        public CommandManager(ILogger logger)
+        {
+            this.logger = logger;
+        }
+
+        public void ExecuteCommand(ICommand command)
 		{
-			throw new NotImplementedException();
-		}
+            command.Execute();
+            undoStack.Push(command);
+            redoStack.Clear(); // Novi korak briše redo istoriju
+            logger?.Log($"[CommandManager] Executed command: {command.GetType().Name}");
+        }
 
 		public void Undo()
 		{
-			throw new NotImplementedException();
-		}
+            if (undoStack.Count == 0)
+            {
+                logger?.Log("[CommandManager] Undo stack is empty. Nothing to undo.");
+                return;
+            }
+
+            var command = undoStack.Pop();
+            command.Unexecute();
+            redoStack.Push(command);
+            logger?.Log($"[CommandManager] Undone command: {command.GetType().Name}");
+        }
 
 		public void Redo()
 		{
-			throw new NotImplementedException();
-		}
+            if (redoStack.Count == 0)
+            {
+                logger?.Log("[CommandManager] Redo stack is empty. Nothing to redo.");
+                return;
+            }
+
+            var command = redoStack.Pop();
+            command.Execute();
+            undoStack.Push(command);
+            logger?.Log($"[CommandManager] Redone command: {command.GetType().Name}");
+        }
 	}
 }
