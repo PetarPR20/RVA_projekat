@@ -1,11 +1,9 @@
-using Common;
 using Common.Interface;
-using ConsoleModelServer.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleModelServer.Helper
+namespace Common
 {
     public class DesignState : ConcreteState, IStartable, IRedesignable
     {

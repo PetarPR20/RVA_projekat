@@ -6,6 +6,7 @@ namespace ConsoleModelServer.Interface
 {
 	public interface ILogger
 	{
-		void Log();
+		//dodat argument
+		void Log(string s);
 	}
 }
