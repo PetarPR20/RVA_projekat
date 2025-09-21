@@ -1,0 +1,50 @@
+﻿[
+  {
+    "Id": 1,
+    "ModelName": "Golf",
+    "BrandName": "Volkswagen",
+    "BodyType": "HATCHBACK",
+    "NumberOfDoors": 5,
+    "ViableEngines": [
+      {
+        "Configuration": "INLINE",
+        "Fuel": "GASOLINE",
+        "NumberOfCylinders": 4,
+        "Power": 85,
+        "Torque": 200
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "ModelName": "A4",
+    "BrandName": "Audi",
+    "BodyType": "SEDAN",
+    "NumberOfDoors": 4,
+    "ViableEngines": [
+      {
+        "Configuration": "INLINE",
+        "Fuel": "DIESEL",
+        "NumberOfCylinders": 4,
+        "Power": 110,
+        "Torque": 320
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "ModelName": "Model 3",
+    "BrandName": "Tesla",
+    "BodyType": "SEDAN",
+    "NumberOfDoors": 4,
+    "ViableEngines": [
+      {
+        "Configuration": "FLAT",
+        "Fuel": "GASOLINE",
+        "NumberOfCylinders": 0,
+        "Power": 225,
+        "Torque": 450
+      }
+    ]
+  }
+]

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ConsoleModelServer.Helper
 {
@@ -17,7 +18,7 @@ namespace ConsoleModelServer.Helper
         {
             this.logger = logger;
         }
-        public List<Model> Load(string filePath)
+        /*public List<Model> Load(string filePath)
         {
             if (!File.Exists(filePath))
             {
@@ -48,7 +49,45 @@ namespace ConsoleModelServer.Helper
                 logger?.Log($"[JSON] Error loading from {filePath}: {ex.Message}");
                 return new List<Model>();
             }
+        }*/
+
+        public List<Model> Load(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                logger?.Log($"[JSON] File not found: {filePath}");
+                return new List<Model>();
+            }
+
+            try
+            {
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    Converters = { new JsonStringEnumConverter() }
+                };
+
+                var json = File.ReadAllText(filePath);
+                var models = JsonSerializer.Deserialize<List<Model>>(json, options);
+
+                if (models != null)
+                {
+                    foreach (var model in models)
+                    {
+                        model.SetState(new DesignState());
+                    }
+                }
+
+                logger?.Log($"[JSON] Successfully loaded {models?.Count ?? 0} models from {filePath}");
+                return models ?? new List<Model>();
+            }
+            catch (Exception ex)
+            {
+                logger?.Log($"[JSON] Error loading from {filePath}: {ex.Message}");
+                return new List<Model>();
+            }
         }
+
 
         public void Save(string filePath, List<Model> models)
         {

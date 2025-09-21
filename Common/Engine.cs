@@ -26,21 +26,21 @@ namespace Common
 
         public Engine(EngineConfiguration configuration, FuelType fuel, int numberOfCylinders, double power, double torque)
         {
-            this.configuration = configuration;
-            this.fuel = fuel;
-            this.numberOfCylinders = numberOfCylinders;
-            this.power = power;
-            this.torque = torque;
+            Configuration = configuration;
+            Fuel = fuel;
+            NumberOfCylinders = numberOfCylinders;
+            Power = power;
+            Torque = torque;
         }
 
         public void EngineSpecs()
         {
             Console.WriteLine("Engine Specifications:");
-            Console.WriteLine($"Configuration: {configuration}");
-            Console.WriteLine($"Fuel Type: {fuel}");
-            Console.WriteLine($"Number of Cylinders: {numberOfCylinders}");
-            Console.WriteLine($"Power: {power} kW");
-            Console.WriteLine($"Torque: {torque} Nm");
+            Console.WriteLine($"Configuration: {Configuration}");
+            Console.WriteLine($"Fuel Type: {Fuel}");
+            Console.WriteLine($"Number of Cylinders: {NumberOfCylinders}");
+            Console.WriteLine($"Power: {Power} kW");
+            Console.WriteLine($"Torque: {Torque} Nm");
         }
     }
 }

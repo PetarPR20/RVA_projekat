@@ -14,7 +14,7 @@ namespace ConsoleModelServer.Helper
 
         static TxtLogger()
         {
-            log4net.Config.XmlConfigurator.Configure();
+        
         }
 
         public void Log(string message)
