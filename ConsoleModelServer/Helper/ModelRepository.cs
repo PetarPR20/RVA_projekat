@@ -2,6 +2,7 @@ using Common;
 using ConsoleModelServer.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ConsoleModelServer.Helper
@@ -89,5 +90,23 @@ namespace ConsoleModelServer.Helper
 		{
             persistance?.Save(filePath, models);
         }
-	}
+
+        public List<Model> SearchModels(
+           string modelName = null,
+           string brandName = null,
+           BodyType? bodyType = null,
+           int? numberOfDoors = null,
+           List<Engine> viableEngines = null)
+        {
+            return models.Where(model =>
+                (string.IsNullOrEmpty(modelName) ||
+                (model.ModelName != null && model.ModelName.IndexOf(modelName, StringComparison.OrdinalIgnoreCase) >= 0)) &&
+                (string.IsNullOrEmpty(brandName) ||
+                (model.BrandName != null && model.BrandName.IndexOf(brandName, StringComparison.OrdinalIgnoreCase) >= 0)) &&
+                (!bodyType.HasValue || model.BodyType == bodyType) &&
+                (!numberOfDoors.HasValue || model.NumberOfDoors == numberOfDoors) &&
+                (viableEngines == null || model.ViableEngines.Intersect(viableEngines).Any())
+            ).ToList();
+        }
+    }
 }
