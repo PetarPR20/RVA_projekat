@@ -26,6 +26,7 @@ namespace ConsoleModelServer.Helper
                 logger?.Log($"Model with ID {model.Id} already exists.");
                 return;
             }
+            model.SetState(new DesignState());
             models.Add(model);
             logger?.Log($"Model with ID {model.Id} added.");
         }
@@ -49,6 +50,7 @@ namespace ConsoleModelServer.Helper
             var index = models.FindIndex(m => m.Id == model.Id);
             if (index >= 0)
             {
+                model.SetState(new DesignState());
                 models[index] = model;
                 logger?.Log($"Model with ID {model.Id} updated.");
             }
@@ -79,7 +81,9 @@ namespace ConsoleModelServer.Helper
                 foreach (var model in loaded)
                 {
                     model.SetState(new DesignState());
+                    model.StateName = model.State.GetType().Name;
                 }
+                models = loaded;
                 return loaded;
             }
 
@@ -95,8 +99,7 @@ namespace ConsoleModelServer.Helper
            string modelName = null,
            string brandName = null,
            BodyType? bodyType = null,
-           int? numberOfDoors = null,
-           List<Engine> viableEngines = null)
+           int? numberOfDoors = null)
         {
             return models.Where(model =>
                 (string.IsNullOrEmpty(modelName) ||
@@ -104,8 +107,8 @@ namespace ConsoleModelServer.Helper
                 (string.IsNullOrEmpty(brandName) ||
                 (model.BrandName != null && model.BrandName.IndexOf(brandName, StringComparison.OrdinalIgnoreCase) >= 0)) &&
                 (!bodyType.HasValue || model.BodyType == bodyType) &&
-                (!numberOfDoors.HasValue || model.NumberOfDoors == numberOfDoors) &&
-                (viableEngines == null || model.ViableEngines.Intersect(viableEngines).Any())
+                (!numberOfDoors.HasValue || model.NumberOfDoors == numberOfDoors)
+                
             ).ToList();
         }
     }

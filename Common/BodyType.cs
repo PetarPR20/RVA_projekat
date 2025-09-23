@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Common
 {
+	[DataContract]
 	public enum BodyType
 	{
-		HATCHBACK,
-		SEDAN,
-		SUV,
-		ESTATE,
-		ROADSTER
+        [EnumMember] HATCHBACK,
+		[EnumMember] SEDAN,
+		[EnumMember] SUV,
+		[EnumMember] ESTATE,
+		[EnumMember] ROADSTER
 	}
 }

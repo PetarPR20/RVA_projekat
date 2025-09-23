@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Common
 {
+    [DataContract]
 	public class Engine
 	{
 		private EngineConfiguration configuration;
@@ -13,11 +15,17 @@ namespace Common
 		private double torque;
 
         // Public properties for serialization and access
+        [DataMember]
         public EngineConfiguration Configuration { get; set; }
+        [DataMember]
         public FuelType Fuel { get; set; }
+        [DataMember]
         public int NumberOfCylinders { get; set; }
+        [DataMember]
         public double Power { get; set; }
+        [DataMember]
         public double Torque { get; set; }
+            
 
         public Engine()
         {

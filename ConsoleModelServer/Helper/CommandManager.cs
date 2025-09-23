@@ -52,5 +52,8 @@ namespace ConsoleModelServer.Helper
             undoStack.Push(command);
             logger?.Log($"[CommandManager] Redone command: {command.GetType().Name}");
         }
-	}
+
+        public int GetUndoStackCount() => undoStack.Count;
+        public int GetRedoStackCount() => redoStack.Count;
+    }
 }

@@ -3,16 +3,37 @@ using Common.Interface;
 using ConsoleModelServer.Interface;
 using System;
 using System.Collections.Generic;
+using System.ServiceModel;
 using System.Text;
 
 namespace ConsoleModelServer.Helper
 {
-	public class ModelService : IModelService
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    public class ModelService : IModelService
 	{
 		ModelRepository repository;
 		CommandManager commandManager;
         //dodato
         private readonly ILogger logger;
+
+        public ModelService(ModelRepository repository, CommandManager commandManager)
+        {
+            this.repository = repository;
+            this.commandManager = commandManager;
+            this.logger = new TxtLogger();
+        }
+
+        public List<Model> SearchModels(
+           string modelName = null,
+           string brandName = null,
+           BodyType? bodyType = null,
+           int? numberOfDoors = null)
+        {
+            return repository.SearchModels(modelName, brandName, bodyType, numberOfDoors);
+        }
+
+        public bool CanUndo() => commandManager.GetUndoStackCount() > 0;
+        public bool CanRedo() => commandManager.GetRedoStackCount() > 0;
 
         public void AddModel(Model model)
         {
@@ -61,13 +82,13 @@ namespace ConsoleModelServer.Helper
             logger?.Log("[ModelService] Redo executed.");
         }
 
-        public void GetAllModels()
+        public List<Model> GetAllModels()
         {
-            var models = repository.GetAllModels();
+            List<Model> models = repository.GetAllModels();
             if (models.Count == 0)
             {
                 logger?.Log("[ModelService] No models found.");
-                return;
+                return new List<Model>();
             }
 
             foreach (var model in models)
@@ -76,6 +97,17 @@ namespace ConsoleModelServer.Helper
             }
 
             logger?.Log("[ModelService] All models listed.");
+            return models;
+        }
+
+        public Model Alive()
+        {
+            Model model = new Model(7, "asdasd", "asdasdasd", BodyType.SUV, 7);
+            model.ViableEngines = new List<Engine>()
+            {
+                new Engine(EngineConfiguration.INLINE, FuelType.DIESEL, 3, 45, 7)
+            };
+            return model;
         }
     }
 }

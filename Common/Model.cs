@@ -1,20 +1,39 @@
 using Common.Interface;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 
 namespace Common
 {
+    [DataContract]
     public class Model
     {
+        [DataMember]
         public int Id { get; set; }
+
+        [DataMember]
         public string ModelName { get; set; }
+
+        [DataMember]
         public string BrandName { get; set; }
+
+        [DataMember]
         public BodyType BodyType { get; set; }
+
+
+        [DataMember]
         public int NumberOfDoors { get; set; }
+
+        [DataMember]
         public List<Engine> ViableEngines { get; set; } = new List<Engine>();
+
+        [IgnoreDataMember]
         public ConcreteState State { get; set; }
+
+        [DataMember]
+        public string StateName { get; set; }
 
         public Model(int id, string modelName, string brandName, BodyType bodyType, int numberOfDoors)
         {
@@ -24,7 +43,10 @@ namespace Common
             BodyType = bodyType;
             NumberOfDoors = numberOfDoors;
             State = new DesignState();
+            StateName = State?.GetType().Name ?? "Unknown";
         }
+
+        public Model() { }
 
         public void StartProduction()
         {
