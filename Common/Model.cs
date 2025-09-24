@@ -1,7 +1,10 @@
 using Common.Interface;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -9,8 +12,9 @@ using System.Text.Json.Serialization;
 namespace Common
 {
     [DataContract]
-    public class Model
+    public class Model : INotifyPropertyChanged
     {
+        private string stateName;
         [DataMember]
         public int Id { get; set; }
 
@@ -35,7 +39,11 @@ namespace Common
         public ConcreteState State { get; set; }
 
         [DataMember]
-        public string StateName { get; set; }
+        public string StateName
+        {
+            get => stateName;
+            set => SetField(ref stateName, value);
+        }
 
         public Model(int id, string modelName, string brandName, BodyType bodyType, int numberOfDoors)
         {
@@ -118,5 +126,21 @@ namespace Common
                 engine.EngineSpecs();
             }
         }
+
+        #region
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value))
+                return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+        #endregion
     }
 }

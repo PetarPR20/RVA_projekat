@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Common
 {
+    [DataContract]
 	public class ElectricMotor : EMobility
 	{
 		private double power;
@@ -18,19 +20,21 @@ namespace Common
 
         public ElectricMotor(double voltage, PowerSource source, double power, double torque, string cooling, double batteryCapacity)
         {
-            this.voltage = voltage;
-            this.source = source;
+            this.Voltage = voltage;
+            this.Source = source;
             Power = power;
             Torque = torque;
             Cooling = cooling;
             BatteryCapacity = batteryCapacity;
         }
 
-        public double Power { get; private set; }
-        public double Torque { get; private set; }
-        public string Cooling { get; private set; }
+        [DataMember] public double Power { get;  set; }
+        [DataMember] public double Torque { get;  set; }
+        [DataMember] public string Cooling { get;  set; }
+        [DataMember] public double Voltage { get;  set; }
+        [DataMember] public PowerSource Source { get;  set; }
 
-        private double BatteryCapacity;
+        [DataMember] public double BatteryCapacity { get; set; }
 
         public override void EVMotorSpecs()
         {

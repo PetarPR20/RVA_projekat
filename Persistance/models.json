@@ -4,7 +4,19 @@
     "ModelName": "Punto",
     "BrandName": "Fiat",
     "NumberOfDoors": 3,
-    "ViableEngines": [],
+    "ViableEngines": [
+      {
+        "Configuration": 0,
+        "Fuel": 2,
+        "NumberOfCylinders": 0,
+        "Power": 1,
+        "Torque": 1,
+        "Voltage": 1,
+        "BatteryCapacity": 1,
+        "Cooling": "asd",
+        "Source": "AC"
+      }
+    ],
     "StateName": "DesignState"
   },
   {
@@ -15,6 +27,8 @@
     "NumberOfDoors": 5,
     "ViableEngines": [
       {
+        "Configuration": 0,
+        "Fuel": 1,
         "NumberOfCylinders": 3,
         "Power": 3,
         "Torque": 3
@@ -28,7 +42,15 @@
     "BrandName": "Audi",
     "BodyType": 2,
     "NumberOfDoors": 5,
-    "ViableEngines": [],
+    "ViableEngines": [
+      {
+        "Configuration": 2,
+        "Fuel": 1,
+        "NumberOfCylinders": 4,
+        "Power": 45,
+        "Torque": 350
+      }
+    ],
     "StateName": "DesignState"
   },
   {
@@ -44,6 +66,38 @@
         "NumberOfCylinders": 3,
         "Power": 3,
         "Torque": 3
+      },
+      {
+        "Configuration": 0,
+        "Fuel": 1,
+        "NumberOfCylinders": 6,
+        "Power": 50,
+        "Torque": 200
+      },
+      {
+        "Configuration": 0,
+        "Fuel": 2,
+        "NumberOfCylinders": 0,
+        "Power": 1,
+        "Torque": 1
+      },
+      {
+        "Configuration": 0,
+        "Fuel": 2,
+        "NumberOfCylinders": 0,
+        "Power": 1,
+        "Torque": 1
+      },
+      {
+        "Configuration": 0,
+        "Fuel": 2,
+        "NumberOfCylinders": 0,
+        "Power": 1,
+        "Torque": 1,
+        "Voltage": 1,
+        "BatteryCapacity": 1,
+        "Cooling": "asdasd",
+        "Source": "AC"
       }
     ],
     "StateName": "DesignState"

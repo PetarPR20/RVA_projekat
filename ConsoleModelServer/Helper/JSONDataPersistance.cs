@@ -68,8 +68,9 @@ namespace ConsoleModelServer.Helper
 
                 var options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true,
-                    AllowTrailingCommas = true
+                    WriteIndented = true,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+                    Converters = { new EngineConverter() } // add the converter here
                 };
 
                 var models = JsonSerializer.Deserialize<List<Model>>(json, options) ?? new List<Model>();
@@ -94,8 +95,8 @@ namespace ConsoleModelServer.Helper
                 var options = new JsonSerializerOptions
                 {
                     WriteIndented = true,
-                    IgnoreReadOnlyProperties = true,
-                    DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+                    Converters = { new EngineConverter() } // add the converter here
                 };
 
                 var copy = models.Select(model => new Model(model.Id, model.ModelName, model.BrandName, model.BodyType, model.NumberOfDoors)

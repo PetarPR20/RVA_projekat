@@ -62,6 +62,11 @@ namespace ConsoleModelServer
 
             string modelPath = Path.Combine(modelDir, modelFile);
 
+
+            string modelPathJSON = Path.Combine(modelDir, modelFileJson);
+            string modelPathXML = Path.Combine(modelDir, modelFileXml);
+            string modelPathCSV = Path.Combine(modelDir, modelFileCsv);
+
             modelRepository = new ModelRepository(persistance, logger);
             CommandManager commandManager = new CommandManager(logger);
             var ServiceInstance = new ModelService(modelRepository, commandManager);
@@ -135,13 +140,18 @@ namespace ConsoleModelServer
                     
                     Console.WriteLine("Models have been saved before exit.");
                 };
-
+                IDataPersistance p1 = new XMLDataPersistance(logger);
+                IDataPersistance p2 = new CSVDataPersistance(logger);
+                ModelRepository m1 = new ModelRepository(p1, logger);
                 host.Open();
                 Console.WriteLine("Service is running...");
                 Console.WriteLine("Press Enter to exit.");
                 Console.ReadLine();
                 Console.WriteLine(modelPath);
                 modelRepository.Save(modelPath);
+                List<Model> m = modelRepository.GetAllModels();
+                p1.Save(modelPathXML, m);
+                p2.Save(modelPathCSV, m);
                 Console.ReadKey();
             }
 

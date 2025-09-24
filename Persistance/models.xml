@@ -6,7 +6,105 @@
     <BrandName>Fiat</BrandName>
     <BodyType>HATCHBACK</BodyType>
     <NumberOfDoors>3</NumberOfDoors>
-    <ViableEngines />
+    <ViableEngines>
+      <Engine xsi:type="ElectricMotorAdapter">
+        <Configuration>INLINE</Configuration>
+        <Fuel>HYBRID</Fuel>
+        <NumberOfCylinders>0</NumberOfCylinders>
+        <Power>1</Power>
+        <Torque>1</Torque>
+        <Voltage>1</Voltage>
+        <BatteryCapacity>1</BatteryCapacity>
+        <Cooling>asd</Cooling>
+        <Source>AC</Source>
+      </Engine>
+    </ViableEngines>
+    <State xsi:type="DesignState" />
+    <StateName>DesignState</StateName>
+  </Model>
+  <Model>
+    <Id>1</Id>
+    <ModelName>Astra</ModelName>
+    <BrandName>Opel</BrandName>
+    <BodyType>SEDAN</BodyType>
+    <NumberOfDoors>5</NumberOfDoors>
+    <ViableEngines>
+      <Engine>
+        <Configuration>INLINE</Configuration>
+        <Fuel>DIESEL</Fuel>
+        <NumberOfCylinders>3</NumberOfCylinders>
+        <Power>3</Power>
+        <Torque>3</Torque>
+      </Engine>
+    </ViableEngines>
+    <State xsi:type="DesignState" />
+    <StateName>DesignState</StateName>
+  </Model>
+  <Model>
+    <Id>3</Id>
+    <ModelName>A3</ModelName>
+    <BrandName>Audi</BrandName>
+    <BodyType>SUV</BodyType>
+    <NumberOfDoors>5</NumberOfDoors>
+    <ViableEngines>
+      <Engine>
+        <Configuration>FLAT</Configuration>
+        <Fuel>DIESEL</Fuel>
+        <NumberOfCylinders>4</NumberOfCylinders>
+        <Power>45</Power>
+        <Torque>350</Torque>
+      </Engine>
+    </ViableEngines>
+    <State xsi:type="DesignState" />
+    <StateName>DesignState</StateName>
+  </Model>
+  <Model>
+    <Id>4</Id>
+    <ModelName>Corolla</ModelName>
+    <BrandName>Toyota</BrandName>
+    <BodyType>ROADSTER</BodyType>
+    <NumberOfDoors>3</NumberOfDoors>
+    <ViableEngines>
+      <Engine>
+        <Configuration>VSHAPED</Configuration>
+        <Fuel>HYBRID</Fuel>
+        <NumberOfCylinders>3</NumberOfCylinders>
+        <Power>3</Power>
+        <Torque>3</Torque>
+      </Engine>
+      <Engine>
+        <Configuration>INLINE</Configuration>
+        <Fuel>DIESEL</Fuel>
+        <NumberOfCylinders>6</NumberOfCylinders>
+        <Power>50</Power>
+        <Torque>200</Torque>
+      </Engine>
+      <Engine>
+        <Configuration>INLINE</Configuration>
+        <Fuel>HYBRID</Fuel>
+        <NumberOfCylinders>0</NumberOfCylinders>
+        <Power>1</Power>
+        <Torque>1</Torque>
+      </Engine>
+      <Engine>
+        <Configuration>INLINE</Configuration>
+        <Fuel>HYBRID</Fuel>
+        <NumberOfCylinders>0</NumberOfCylinders>
+        <Power>1</Power>
+        <Torque>1</Torque>
+      </Engine>
+      <Engine xsi:type="ElectricMotorAdapter">
+        <Configuration>INLINE</Configuration>
+        <Fuel>HYBRID</Fuel>
+        <NumberOfCylinders>0</NumberOfCylinders>
+        <Power>1</Power>
+        <Torque>1</Torque>
+        <Voltage>1</Voltage>
+        <BatteryCapacity>1</BatteryCapacity>
+        <Cooling>asdasd</Cooling>
+        <Source>AC</Source>
+      </Engine>
+    </ViableEngines>
     <State xsi:type="DesignState" />
     <StateName>DesignState</StateName>
   </Model>

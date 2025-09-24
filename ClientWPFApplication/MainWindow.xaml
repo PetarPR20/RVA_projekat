@@ -7,7 +7,7 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:ClientWPFApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="800"
+        Title="MainWindow" Height="500" Width="800"
         x:Name="MainWindowControl"
         WindowStartupLocation="Manual"
         Top="0" Left="300">
@@ -53,7 +53,7 @@
        x:Name="EnginePopup"
        IsOpen="True">
             <Border Background="White" BorderBrush="Black" BorderThickness="1" Padding="10" CornerRadius="8"
-            Width="800">
+            Width="1000">
                 <Border.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="5" ShadowDepth="2"/>
                 </Border.Effect>
@@ -78,7 +78,17 @@
                                 <DataGridTextColumn Header="Fuel" Binding="{Binding Fuel}" Width="Auto"/>
                                 <DataGridTextColumn Header="Cylinders" Binding="{Binding NumberOfCylinders}" Width="Auto"/>
                                 <DataGridTextColumn Header="Power (kW)" Binding="{Binding Power}" Width="Auto"/>
+                                
                                 <DataGridTextColumn Header="Torque (Nm)" Binding="{Binding Torque}" Width="Auto"/>
+                                <!-- EV-specific fields -->
+                                <DataGridTextColumn Header="Voltage (V)" 
+                            Binding="{Binding Voltage, TargetNullValue='-'}" Width="Auto"/>
+                                <DataGridTextColumn Header="Battery (kWh)" 
+                            Binding="{Binding BatteryCapacity, TargetNullValue='-'}" Width="Auto"/>
+                                <DataGridTextColumn Header="Cooling" 
+                            Binding="{Binding Cooling, TargetNullValue='-'}" Width="Auto"/>
+                                <DataGridTextColumn Header="Source" 
+                            Binding="{Binding Source, TargetNullValue='-'}" Width="Auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
@@ -121,6 +131,33 @@
                             <TextBox Text="{Binding NewEngineTorque, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
                         </StackPanel>
 
+                        <!-- Voltage -->
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Voltage (V):" Width="120"/>
+                            <TextBox Text="{Binding NewEVVoltage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                        </StackPanel>
+
+                        <!-- Battery Capacity -->
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Battery (kWh):" Width="120"/>
+                            <TextBox Text="{Binding NewEVBatteryCapacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                        </StackPanel>
+
+                        <!-- Cooling -->
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Cooling:" Width="120"/>
+                            <TextBox Text="{Binding NewEVCooling, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Power Source:" Width="120"/>
+                            <ComboBox ItemsSource="{Binding PowerSources}"
+                                      SelectedItem="{Binding NewEVSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Width="150"
+                                      IsEditable="False"
+                                      />
+                        </StackPanel>
+
                         <!-- Add Button -->
                         <Button Content="Add Engine"
                         Command="{Binding AddEngineCommand}"
@@ -133,12 +170,12 @@
         </Popup>
         <Popup PlacementTarget="{Binding ElementName=MainWindowControl}" 
                Placement="Right"
-               Width="300"
-               Height="300"
+               Width="250"
+               Height="500"
                x:Name="StateChartPopup"
                IsOpen="True">
             <Border Background="White" BorderBrush="Black" BorderThickness="1" Padding="10" CornerRadius="8" Width="250">
-                <lvc:PieChart Series="{Binding StateSeries}" LegendLocation="Right"/>
+                <lvc:PieChart Series="{Binding StateSeries}" LegendLocation="Bottom"/>
             </Border>
         </Popup>
         <StackPanel Grid.Row="2" Orientation="Vertical" Margin="10" Width="300">

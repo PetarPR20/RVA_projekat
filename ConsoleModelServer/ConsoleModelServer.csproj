@@ -124,6 +124,7 @@
     <Compile Include="Helper\CRUDCommand.cs" />
     <Compile Include="Helper\CSVDataPersistance.cs" />
     <Compile Include="Helper\DesignState.cs" />
+    <Compile Include="Helper\EngineConverter.cs" />
     <Compile Include="Helper\InProductionState.cs" />
     <Compile Include="Helper\JSONDataPersistance.cs" />
     <Compile Include="Helper\ModelRepository.cs" />

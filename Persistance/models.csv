@@ -1,1 +1,9 @@
-2,Punto,Fiat,HATCHBACK,3
+ModelId,ModelName,BrandName,BodyType,NumberOfDoors,EngineType,Configuration,Fuel,Cylinders,Power,Torque,EVVoltage,EVBattery,Cooling,Source
+2,Punto,Fiat,HATCHBACK,3,EVAdapter,INLINE,HYBRID,0,1,1,1,1,asd,AC
+1,Astra,Opel,SEDAN,5,Engine,INLINE,DIESEL,3,3,3,,,,,
+3,A3,Audi,SUV,5,Engine,FLAT,DIESEL,4,45,350,,,,,
+4,Corolla,Toyota,ROADSTER,3,Engine,VSHAPED,HYBRID,3,3,3,,,,,
+4,Corolla,Toyota,ROADSTER,3,Engine,INLINE,DIESEL,6,50,200,,,,,
+4,Corolla,Toyota,ROADSTER,3,Engine,INLINE,HYBRID,0,1,1,,,,,
+4,Corolla,Toyota,ROADSTER,3,Engine,INLINE,HYBRID,0,1,1,,,,,
+4,Corolla,Toyota,ROADSTER,3,EVAdapter,INLINE,HYBRID,0,1,1,1,1,asdasd,AC

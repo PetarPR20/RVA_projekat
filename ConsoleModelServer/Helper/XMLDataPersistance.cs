@@ -10,13 +10,13 @@ namespace ConsoleModelServer.Helper
 {
     public class XMLDataPersistance : IDataPersistance
     {
-        //dodato
         private readonly ILogger logger;
 
         public XMLDataPersistance(ILogger logger)
         {
             this.logger = logger;
         }
+
         public List<Model> Load(string filePath)
         {
             if (!File.Exists(filePath))
@@ -24,20 +24,24 @@ namespace ConsoleModelServer.Helper
                 logger?.Log($"[XML] File not found: {filePath}");
                 return new List<Model>();
             }
-            Console.WriteLine("Loading data from: " + filePath);
-            string xmlText = File.ReadAllText(filePath);
-            Console.WriteLine(xmlText);
+
             try
             {
-                var serializer = new XmlSerializer(typeof(List<Model>));
+                var serializer = new XmlSerializer(typeof(List<Model>), new Type[] {
+                    typeof(ElectricMotorAdapter), typeof(ElectricMotor)
+                });
 
                 using (var stream = new FileStream(filePath, FileMode.Open))
                 {
                     var models = (List<Model>)serializer.Deserialize(stream);
 
+                    // Reapply state after deserialization
                     foreach (var model in models)
                     {
                         model.SetState(new DesignState());
+                        // Ensure ViableEngines is never null
+                        if (model.ViableEngines == null)
+                            model.ViableEngines = new List<Engine>();
                     }
 
                     logger?.Log($"[XML] Successfully loaded {models.Count} models from {filePath}");
@@ -55,14 +59,18 @@ namespace ConsoleModelServer.Helper
         {
             try
             {
-                var serializer = new XmlSerializer(typeof(List<Model>));
+                var serializer = new XmlSerializer(typeof(List<Model>), new Type[] {
+                    typeof(ElectricMotorAdapter), typeof(ElectricMotor)
+                });
 
-                // Pravimo kopiju bez stanja
+                // Make a shallow copy to avoid persisting state objects
                 var copy = new List<Model>();
                 foreach (var model in models)
                 {
-                    var clone = new Model(model.Id, model.ModelName, model.BrandName, model.BodyType, model.NumberOfDoors);
-                    clone.ViableEngines = model.ViableEngines;
+                    var clone = new Model(model.Id, model.ModelName, model.BrandName, model.BodyType, model.NumberOfDoors)
+                    {
+                        ViableEngines = model.ViableEngines ?? new List<Engine>()
+                    };
                     copy.Add(clone);
                 }
 

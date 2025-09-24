@@ -114,6 +114,7 @@ namespace ConsoleModelServer.Helper
         {
             Model model = repository.GetModelById(id);
             model.ViableEngines.Add(engine);
+            repository.UpdateModel(model);
         }
 
     }

@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Common
 {
     [DataContract]
-	public class Engine
+    [KnownType(typeof(ElectricMotorAdapter))]
+    [XmlInclude(typeof(ElectricMotorAdapter))]
+    public class Engine
 	{
 		private EngineConfiguration configuration;
 		private FuelType fuel;
