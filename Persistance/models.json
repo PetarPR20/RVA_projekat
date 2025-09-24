@@ -1,0 +1,51 @@
+[
+  {
+    "Id": 2,
+    "ModelName": "Punto",
+    "BrandName": "Fiat",
+    "NumberOfDoors": 3,
+    "ViableEngines": [],
+    "StateName": "DesignState"
+  },
+  {
+    "Id": 1,
+    "ModelName": "Astra",
+    "BrandName": "Opel",
+    "BodyType": 1,
+    "NumberOfDoors": 5,
+    "ViableEngines": [
+      {
+        "NumberOfCylinders": 3,
+        "Power": 3,
+        "Torque": 3
+      }
+    ],
+    "StateName": "DesignState"
+  },
+  {
+    "Id": 3,
+    "ModelName": "A3",
+    "BrandName": "Audi",
+    "BodyType": 2,
+    "NumberOfDoors": 5,
+    "ViableEngines": [],
+    "StateName": "DesignState"
+  },
+  {
+    "Id": 4,
+    "ModelName": "Corolla",
+    "BrandName": "Toyota",
+    "BodyType": 4,
+    "NumberOfDoors": 3,
+    "ViableEngines": [
+      {
+        "Configuration": 1,
+        "Fuel": 2,
+        "NumberOfCylinders": 3,
+        "Power": 3,
+        "Torque": 3
+      }
+    ],
+    "StateName": "DesignState"
+  }
+]

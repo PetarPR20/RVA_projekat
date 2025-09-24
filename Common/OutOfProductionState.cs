@@ -11,6 +11,8 @@ namespace Common
         {
             Console.WriteLine($"Redesigning model {model.ModelName} in OutOfProductionState.");
             model.SetState(new DesignState());
+            model.StateName = "Design";
+
         }
     }
 }

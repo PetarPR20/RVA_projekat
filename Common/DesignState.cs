@@ -12,12 +12,13 @@ namespace Common
         {
             Console.WriteLine($"Starting production for model {model.ModelName}.");
             model.SetState(new InProductionState());
+            model.StateName = "InProduction";
+
         }
 
         public void Redesign(Model model)
         {
             Console.WriteLine($"Redesigning model {model.ModelName}.");
-            
         }
 
     }

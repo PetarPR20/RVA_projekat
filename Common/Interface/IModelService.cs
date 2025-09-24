@@ -17,6 +17,10 @@ namespace Common.Interface
 
 
         [OperationContract]
+        void AddEngine(int id, Engine engine);
+
+
+        [OperationContract]
 		bool CanUndo();
 
         [OperationContract]

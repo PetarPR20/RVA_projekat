@@ -12,12 +12,15 @@ namespace Common
         {
             Console.WriteLine($"Stopping production for model {model.ModelName}.");
             model.SetState(new OutOfProductionState());
+            model.StateName = "OutOfProduction";
         }
 
         public void ProductionFailed(Model model)
         {
             Console.WriteLine($"Production failed for model {model.ModelName}. Transitioning to DesignState.");
             model.SetState(new DesignState());
+            model.StateName = "Design";
+
         }
 
     }

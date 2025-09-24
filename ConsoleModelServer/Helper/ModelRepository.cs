@@ -90,7 +90,7 @@ namespace ConsoleModelServer.Helper
             return new List<Model>();
         }
 
-		public void Save(string filePath, List<Model> models)
+		public void Save(string filePath)
 		{
             persistance?.Save(filePath, models);
         }

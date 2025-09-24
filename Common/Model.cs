@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 
 
 namespace Common
@@ -29,6 +30,7 @@ namespace Common
         [DataMember]
         public List<Engine> ViableEngines { get; set; } = new List<Engine>();
 
+        [JsonIgnore]
         [IgnoreDataMember]
         public ConcreteState State { get; set; }
 

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:ClientWPFApplication.ViewModels"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:ClientWPFApplication"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="800"
@@ -46,34 +47,98 @@
         </DataGrid>
 
         <!-- POPUP FOR ENGINE LIST -->
+        <!-- POPUP FOR ENGINE LIST -->
         <Popup PlacementTarget="{Binding ElementName=MainWindowControl}" 
-               Placement="Bottom"
-               x:Name="EnginePopup"
-               IsOpen="True">
-            
+       Placement="Bottom"
+       x:Name="EnginePopup"
+       IsOpen="True">
             <Border Background="White" BorderBrush="Black" BorderThickness="1" Padding="10" CornerRadius="8"
-                    Width="800">
+            Width="800">
                 <Border.Effect>
                     <DropShadowEffect Color="Black" BlurRadius="5" ShadowDepth="2"/>
                 </Border.Effect>
-                <StackPanel>
-                    <TextBlock Text="Engines" FontWeight="Bold" FontSize="14" Margin="0,0,0,5"/>
-                    <DataGrid ItemsSource="{Binding SelectedModel.ViableEngines}"
-                              AutoGenerateColumns="False"
-                              x:Name="EnginesGrid"
-                              CanUserAddRows="False"
-                              CanUserDeleteRows="False"
-                              IsReadOnly="True"
-                              MinWidth="400" MinHeight="150">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Configuration" Binding="{Binding Configuration}" Width="*"/>
-                            <DataGridTextColumn Header="Fuel" Binding="{Binding Fuel}" Width="Auto"/>
-                            <DataGridTextColumn Header="Cylinders" Binding="{Binding NumberOfCylinders}" Width="Auto"/>
-                            <DataGridTextColumn Header="Power (kW)" Binding="{Binding Power}" Width="Auto"/>
-                            <DataGridTextColumn Header="Torque (Nm)" Binding="{Binding Torque}" Width="Auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left: Engine List -->
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Engines" FontWeight="Bold" FontSize="14" Margin="0,0,0,5"/>
+                        <DataGrid ItemsSource="{Binding DisplayedEngines}"
+                          AutoGenerateColumns="False"
+                          x:Name="EnginesGrid"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          IsReadOnly="True"
+                          MinWidth="400" MinHeight="200">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Configuration" Binding="{Binding Configuration}" Width="*"/>
+                                <DataGridTextColumn Header="Fuel" Binding="{Binding Fuel}" Width="Auto"/>
+                                <DataGridTextColumn Header="Cylinders" Binding="{Binding NumberOfCylinders}" Width="Auto"/>
+                                <DataGridTextColumn Header="Power (kW)" Binding="{Binding Power}" Width="Auto"/>
+                                <DataGridTextColumn Header="Torque (Nm)" Binding="{Binding Torque}" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+
+                    <!-- Right: Add/Edit Engine Form -->
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <TextBlock Text="Add New Engine" FontWeight="Bold" FontSize="14" Margin="0,0,0,10"/>
+
+                        <!-- Configuration (enum) -->
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Configuration:" Width="120"/>
+                            <ComboBox ItemsSource="{Binding EngineConfigurations}"
+                              SelectedItem="{Binding NewEngineConfiguration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Width="150"/>
+                        </StackPanel>
+
+                        <!-- Fuel (enum) -->
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Fuel:" Width="120"/>
+                            <ComboBox ItemsSource="{Binding EngineFuelTypes}"
+                              SelectedItem="{Binding NewEngineFuel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Width="150"/>
+                        </StackPanel>
+
+                        <!-- Cylinders -->
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Cylinders:" Width="120"/>
+                            <TextBox Text="{Binding NewEngineNumberOfCylinders, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                        </StackPanel>
+
+                        <!-- Power -->
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Power (kW):" Width="120"/>
+                            <TextBox Text="{Binding NewEnginePower, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                        </StackPanel>
+
+                        <!-- Torque -->
+                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                            <TextBlock Text="Torque (Nm):" Width="120"/>
+                            <TextBox Text="{Binding NewEngineTorque, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                        </StackPanel>
+
+                        <!-- Add Button -->
+                        <Button Content="Add Engine"
+                        Command="{Binding AddEngineCommand}"
+                        Margin="0,10,0,0"
+                        Width="150"
+                        HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Popup>
+        <Popup PlacementTarget="{Binding ElementName=MainWindowControl}" 
+               Placement="Right"
+               Width="300"
+               Height="300"
+               x:Name="StateChartPopup"
+               IsOpen="True">
+            <Border Background="White" BorderBrush="Black" BorderThickness="1" Padding="10" CornerRadius="8" Width="250">
+                <lvc:PieChart Series="{Binding StateSeries}" LegendLocation="Right"/>
             </Border>
         </Popup>
         <StackPanel Grid.Row="2" Orientation="Vertical" Margin="10" Width="300">

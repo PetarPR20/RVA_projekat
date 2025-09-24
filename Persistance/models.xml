@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ArrayOfModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Model>
+    <Id>2</Id>
+    <ModelName>Punto</ModelName>
+    <BrandName>Fiat</BrandName>
+    <BodyType>HATCHBACK</BodyType>
+    <NumberOfDoors>3</NumberOfDoors>
+    <ViableEngines />
+    <State xsi:type="DesignState" />
+    <StateName>DesignState</StateName>
+  </Model>
+</ArrayOfModel>

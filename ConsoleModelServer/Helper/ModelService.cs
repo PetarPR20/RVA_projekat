@@ -109,5 +109,12 @@ namespace ConsoleModelServer.Helper
             };
             return model;
         }
+
+        public void AddEngine(int id, Engine engine)
+        {
+            Model model = repository.GetModelById(id);
+            model.ViableEngines.Add(engine);
+        }
+
     }
 }

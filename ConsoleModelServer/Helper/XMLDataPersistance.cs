@@ -24,7 +24,9 @@ namespace ConsoleModelServer.Helper
                 logger?.Log($"[XML] File not found: {filePath}");
                 return new List<Model>();
             }
-
+            Console.WriteLine("Loading data from: " + filePath);
+            string xmlText = File.ReadAllText(filePath);
+            Console.WriteLine(xmlText);
             try
             {
                 var serializer = new XmlSerializer(typeof(List<Model>));
